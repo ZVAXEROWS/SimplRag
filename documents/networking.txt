@@ -1,0 +1,132 @@
+================================================================================
+                         COMPUTER NETWORKING
+================================================================================
+
+1. INTRODUCTION
+----------------
+Computer networking is the practice of connecting computing devices to share
+resources and exchange data. Networks range from small local connections to
+the global Internet. Key goals: reliability, scalability, performance, and
+security.
+
+2. NETWORK TOPOLOGIES
+---------------------
+- Bus: all devices share a single communication line.
+- Star: devices connected to a central hub/switch.
+- Ring: each device connected to two others forming a ring.
+- Mesh: fully or partially connected.
+- Hybrid: combination of topologies.
+
+3. OSI REFERENCE MODEL
+----------------------
+The Open Systems Interconnection (OSI) model defines seven layers:
+
+  7. Application Layer  – user interfaces, protocols (HTTP, SMTP, FTP)
+  6. Presentation Layer – data translation, encryption, compression
+  5. Session Layer      – session management, dialogue control
+  4. Transport Layer    – end-to-end communication (TCP, UDP)
+  3. Network Layer      – routing, logical addressing (IP)
+  2. Data Link Layer    – framing, MAC addressing (Ethernet)
+  1. Physical Layer     – bit transmission over physical medium
+
+4. TCP/IP MODEL
+----------------
+The Internet protocol suite (TCP/IP) has four layers (often simplified):
+  - Application Layer: corresponds to OSI layers 5-7 (HTTP, DNS, FTP, etc.)
+  - Transport Layer: TCP and UDP.
+  - Internet Layer: IP (IPv4, IPv6), ICMP.
+  - Network Access Layer: physical and data link (Ethernet, Wi-Fi).
+
+5. IP ADDRESSING
+----------------
+- IPv4: 32-bit address, written as four octets (e.g., 192.168.1.1).
+  - Classes A, B, C, D, E; subnetting; CIDR notation.
+- IPv6: 128-bit address to overcome exhaustion (e.g., 2001:0db8:85a3::/64).
+- Network Address Translation (NAT) allows private IPs to share a public IP.
+
+6. ROUTING AND SWITCHING
+------------------------
+- Switching: forwards frames within a local network (Layer 2).
+- Routing: forwards packets between networks (Layer 3).
+- Routing protocols:
+  - Distance-vector: RIP, EIGRP.
+  - Link-state: OSPF, IS-IS.
+  - Path-vector: BGP (used on the Internet).
+
+7. TRANSPORT PROTOCOLS
+----------------------
+- TCP (Transmission Control Protocol):
+  - Connection-oriented, reliable, in-order delivery.
+  - Flow control (sliding window), congestion control (AIMD, slow start).
+  - Three-way handshake (SYN, SYN-ACK, ACK).
+  - Uses ports to identify applications.
+- UDP (User Datagram Protocol):
+  - Connectionless, unreliable, low overhead.
+  - Used for real-time applications (VoIP, streaming) and DNS.
+
+8. APPLICATION LAYER PROTOCOLS
+-------------------------------
+- HTTP/HTTPS: web browsing, REST APIs, WebSocket.
+- SMTP/POP3/IMAP: email.
+- FTP/SFTP: file transfer.
+- DNS: domain name resolution (port 53).
+- DHCP: dynamic IP configuration.
+- SNMP: network management.
+
+9. NETWORK SECURITY
+-------------------
+- Firewalls: filter incoming/outgoing traffic (stateful, packet filtering).
+- Encryption: SSL/TLS for secure communication.
+- Authentication: certificates, Kerberos, OAuth.
+- Virtual Private Networks (VPNs): IPsec, OpenVPN, WireGuard.
+- Intrusion Detection/Prevention Systems (IDS/IPS).
+- Common attacks: DDoS, man-in-the-middle, phishing, spoofing.
+
+10. NETWORK DEVICES
+-------------------
+- Hub: broadcast traffic (obsolete).
+- Switch: intelligently forwards frames based on MAC addresses.
+- Router: forwards packets between different networks.
+- Gateway: connects disparate networks/protocols.
+- Access point (AP): connects wireless devices to wired network.
+- Modem: modulates/demodulates signals for ISP connection.
+
+11. WIRELESS NETWORKING
+-----------------------
+- Wi-Fi (IEEE 802.11 standards): a/b/g/n/ac/ax (Wi-Fi 6).
+- Cellular: 4G, 5G.
+- Bluetooth, Zigbee, LoRa for short-range and IoT.
+- Security: WPA2/WPA3, WEP (deprecated).
+
+12. CLOUD NETWORKING
+--------------------
+- Software-Defined Networking (SDN): separates control plane and data plane.
+- Network Function Virtualization (NFV): run network services on commodity
+  hardware.
+- Virtual Private Cloud (VPC) in AWS, Azure, GCP.
+- Content Delivery Networks (CDN) to reduce latency.
+
+13. NETWORK PERFORMANCE
+-----------------------
+- Bandwidth: maximum data rate.
+- Throughput: actual data rate achieved.
+- Latency: time for a packet to travel.
+- Jitter: variation in latency.
+- Metrics: RTT (Round-Trip Time), packet loss.
+- Tools: ping, traceroute, iperf, Wireshark.
+
+14. EMERGING TECHNOLOGIES
+-------------------------
+- IPv6 adoption and transition mechanisms (NAT64, Teredo).
+- 5G and beyond, IoT networking.
+- Quantum networking (concept).
+- Zero Trust Network Architecture.
+
+15. RESOURCES FOR FURTHER STUDY
+-------------------------------
+- "Computer Networks" by Tanenbaum.
+- "TCP/IP Illustrated" by Stevens.
+- RFC documents (IETF).
+- Online simulators: Cisco Packet Tracer, GNS3.
+
+================================================================================

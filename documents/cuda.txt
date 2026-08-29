@@ -1,0 +1,129 @@
+================================================================================
+                          CUDA PROGRAMMING
+================================================================================
+
+1. INTRODUCTION TO CUDA
+-----------------------
+CUDA (Compute Unified Device Architecture) is a parallel computing platform and
+programming model developed by NVIDIA. It enables dramatic speedups by harnessing
+the power of Graphics Processing Units (GPUs) for general-purpose computing
+(GPGPU).
+
+Key concepts:
+- Host: CPU and its memory (DRAM).
+- Device: GPU and its memory (VRAM).
+- Kernel: a function executed on the GPU by many threads in parallel.
+- Thread hierarchy: threads are grouped into blocks, blocks into grids.
+
+2. GPU ARCHITECTURE
+--------------------
+Modern NVIDIA GPUs consist of streaming multiprocessors (SMs), each containing:
+- CUDA cores (ALU units)
+- Shared memory and registers
+- Warp schedulers (a warp = 32 threads executing in lockstep)
+- Special functional units (SFUs, load/store units)
+
+Memory hierarchy:
+- Global memory: large, high-latency, accessible by all threads.
+- Shared memory: low-latency, on-chip memory shared within a block.
+- Registers: fastest, private per thread.
+- Constant and texture caches: read-only, optimized for broadcast.
+
+3. CUDA PROGRAMMING MODEL
+--------------------------
+- A kernel is defined using __global__ qualifier.
+- Launch configuration: kernel<<<gridDim, blockDim, sharedMem, stream>>> (args).
+- Thread indices: threadIdx, blockIdx, blockDim, gridDim.
+
+Example:
+    __global__ void add(int *a, int *b, int *c) {
+        int i = threadIdx.x + blockIdx.x * blockDim.x;
+        c[i] = a[i] + b[i];
+    }
+
+4. MEMORY MANAGEMENT IN CUDA
+-----------------------------
+API functions for device memory:
+- cudaMalloc: allocate global memory.
+- cudaFree: free global memory.
+- cudaMemcpy: copy between host and device (synchronous).
+- cudaMemcpyAsync: asynchronous copy using streams.
+
+Unified Memory (introduced in CUDA 6):
+- Single memory space accessible by both CPU and GPU.
+- cudaMallocManaged: manages data migration automatically.
+
+5. PERFORMANCE OPTIMIZATION
+----------------------------
+- Maximize occupancy: enough active warps per SM to hide latency.
+- Use shared memory to reduce global memory accesses.
+- Coalesced global memory access: threads in a warp should access consecutive
+  memory locations.
+- Avoid warp divergence (branches within a warp).
+- Use constant memory for read-only data broadcast to all threads.
+- Use texture memory for 2D spatial locality.
+
+6. CUDA STREAMS AND CONCURRENCY
+--------------------------------
+- Streams allow overlapping data transfer and kernel execution.
+- Use cudaStreamCreate, cudaStreamSynchronize.
+- Asynchronous functions with stream parameter.
+
+7. CUDA TOOLKIT AND LIBRARIES
+------------------------------
+- CUDA Toolkit includes compiler (nvcc), debugger (cuda-gdb), profiler (NVIDIA
+  Nsight).
+- Libraries:
+  - cuBLAS: BLAS linear algebra.
+  - cuFFT: Fast Fourier Transform.
+  - cuRAND: random number generation.
+  - cuSPARSE: sparse matrix operations.
+  - Thrust: C++ template library for CUDA (like STL).
+  - CUTLASS: template-based GEMM library.
+
+8. CUDA C++ EXTENSIONS
+----------------------
+- __device__: function executed on device, callable from device only.
+- __host__: function executed on host (default).
+- __global__: device kernel called from host.
+- __shared__: variable in shared memory.
+- __constant__: variable in constant memory.
+- __restrict__: pointer qualifier for aliasing hints.
+
+9. ERROR HANDLING AND DEBUGGING
+--------------------------------
+- Check return codes of CUDA API calls with cudaGetErrorString.
+- Use cuda-memcheck to detect memory access errors.
+- Use NVIDIA Nsight for advanced profiling.
+
+10. ADVANCED TOPICS
+-------------------
+- Dynamic parallelism: kernels launch other kernels (CUDA 5+).
+- Cooperative groups: flexible thread synchronization beyond block.
+- CUDA Graphs: capture execution dependencies and reduce launch overhead.
+- Multi-GPU programming: using multiple GPUs with peer-to-peer (P2P) access.
+
+11. BEST PRACTICES
+-------------------
+- Prefer large numbers of threads to occupy SMs.
+- Use shared memory for reduction and convolution.
+- Overlap computation and communication using streams.
+- Use pinned (page-locked) host memory for faster transfers (cudaHostAlloc).
+- Enable compiler optimizations: -O3, -use_fast_math.
+
+12. USE CASES
+-------------
+- Deep learning training/inference (cuDNN).
+- Scientific simulations (molecular dynamics, CFD).
+- Image and signal processing.
+- Cryptography and data analytics.
+- Rendering and ray tracing (OptiX).
+
+13. RESOURCES
+-------------
+- Official CUDA Programming Guide.
+- "CUDA by Example" by Sanders and Kandrot.
+- "Programming Massively Parallel Processors" by Kirk and Hwu.
+- NVIDIA Developer Blog and webinars.
+
+================================================================================
